@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2P Chat</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sección de Login/Start -->
+        <div id="loginSection" class="section">
+            <div class="card">
+                <h1>🔗 P2P Chat</h1>
+                <p class="subtitle">Chat descentralizado peer-to-peer</p>
+                
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Tu nombre de usuario" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="peerPort">Puerto P2P:</label>
+                    <input type="number" id="peerPort" value="5001" />
+                </div>
+                
+                <div class="form-group">
+                    <label for="apiPort">Puerto API:</label>
+                    <input type="number" id="apiPort" value="3001" readonly />
+                    <small>Este puerto debe coincidir con el puerto donde corre tu peer API</small>
+                </div>
+                
+                <button id="startBtn" class="btn btn-primary">Iniciar Nodo</button>
+                <div id="loginStatus" class="status"></div>
+            </div>
+        </div>
+
+        <!-- Sección Principal del Chat -->
+        <div id="chatSection" class="section hidden">
+            <div class="header">
+                <h2>Chat P2P - <span id="currentUsername"></span></h2>
+                <button id="stopBtn" class="btn btn-danger">Desconectar</button>
+            </div>
+
+            <div class="main-content">
+                <!-- Sidebar con lista de peers -->
+                <div class="sidebar">
+                    <h3>Peers Disponibles</h3>
+                    <button id="refreshPeersBtn" class="btn btn-secondary btn-small">🔄 Refrescar</button>
+                    <div id="availablePeersList" class="peers-list"></div>
+
+                    <h3>Conectados</h3>
+                    <div id="connectedPeersList" class="peers-list"></div>
+                </div>
+
+                <!-- Área de chat -->
+                <div class="chat-area">
+                    <div id="messagesContainer" class="messages-container"></div>
+                    
+                    <div class="message-input-container">
+                        <select id="recipientSelect" class="recipient-select">
+                            <option value="">Selecciona un destinatario</option>
+                        </select>
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            placeholder="Escribe un mensaje..." 
+                            disabled
+                        />
+                        <button id="sendBtn" class="btn btn-primary" disabled>Enviar</button>
+                        <button id="broadcastBtn" class="btn btn-secondary" disabled>Broadcast</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección de Status -->
+        <div id="statusBar" class="status-bar hidden">
+            <span id="connectionStatus">🔴 Desconectado</span>
+            <span id="peersCount">Peers: 0</span>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

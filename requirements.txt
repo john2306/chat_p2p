@@ -1,0 +1,9 @@
+fastapi
+uvicorn[standard]
+websockets
+sqlalchemy
+pydantic
+pydantic-settings
+python-multipart
+aiosqlite
+httpx
